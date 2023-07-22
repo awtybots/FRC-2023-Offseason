@@ -14,19 +14,19 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.auto.Diagnostic;
 import frc.robot.commands.Autonomous.AutonIntakeNoCurrentLimit;
 import frc.robot.commands.Autonomous.Balance.Balance;
-import frc.robot.commands.Autonomous.Balance.BalanceWithShoot;
-import frc.robot.commands.Autonomous.Pickup;
-import frc.robot.commands.Autonomous.Place;
-import frc.robot.commands.Autonomous.PreparePickup;
-import frc.robot.commands.Autonomous.ShootPiece.Position;
-import frc.robot.commands.Autonomous.ShootPiece.ShootPiece;
+// import frc.robot.commands.Autonomous.Balance.BalanceWithShoot;
+// import frc.robot.commands.Autonomous.Pickup;
+// import frc.robot.commands.Autonomous.Place;
+// import frc.robot.commands.Autonomous.PreparePickup;
+// import frc.robot.commands.Autonomous.ShootPiece.Position; TODO: needs to be reimplemented
+// import frc.robot.commands.Autonomous.ShootPiece.ShootPiece;
 import frc.robot.commands.DriveParts.*;
-import frc.robot.commands.Positions.Intake.IntakeFromGroundPosition;
-import frc.robot.commands.Positions.Intake.IntakeFromHumanPlayerPosition;
-import frc.robot.commands.Positions.Intake.IntakeFromSlidingHumanPlayerPosition;
-import frc.robot.commands.Positions.Nodes.HighNodePosition.HighNodePosition;
-import frc.robot.commands.Positions.Nodes.MidNodePosition;
-import frc.robot.commands.Positions.StowPosition;
+// import frc.robot.commands.Positions.Intake.IntakeFromGroundPosition;
+// import frc.robot.commands.Positions.Intake.IntakeFromHumanPlayerPosition;
+// import frc.robot.commands.Positions.Intake.IntakeFromSlidingHumanPlayerPosition;
+// import frc.robot.commands.Positions.Nodes.HighNodePosition.HighNodePosition;
+// import frc.robot.commands.Positions.Nodes.MidNodePosition;
+// import frc.robot.commands.Positions.StowPosition;
 import frc.robot.subsystems.LedSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.MechanicalParts.*;
@@ -50,30 +50,27 @@ public class RobotContainer {
 
     // The robot's subsystems
     private final Swerve s_Swerve = new Swerve();
-    private LedSubsystem s_Led = new LedSubsystem(0, 72);
+    // private LedSubsystem s_Led = new LedSubsystem(0, 72);
 
     private final LimelightSubsystem Limelight = new LimelightSubsystem();
 
-    private final ElevatorSubsystem s_Elevator = new ElevatorSubsystem();
-    // ! private final ArmSubsystem s_Arm = new ArmSubsystem();
-    private final ArmElevatorSubsystem s_ArmElevator = new ArmElevatorSubsystem();
-    private final ClawSubsystem s_Claw = new ClawSubsystem();
-    private final IntakeSubsystem s_Intake = new IntakeSubsystem(s_Led);
+    // private final ElevatorSubsystem s_Elevator = new ElevatorSubsystem();
+    // private final ArmSubsystem s_Arm = new ArmSubsystem();
+    // private final ArmElevatorSubsystem s_ArmElevator = new ArmElevatorSubsystem();
+    // private final ClawSubsystem s_Claw = new ClawSubsystem();
+    // ! private final IntakeSubsystem s_Intake = new IntakeSubsystem(s_Led); TODO: needs to be replaced
 
     private static boolean isCone = Constants.DefaultConfig.isCone;
     private static boolean resetPosMode = false;
     private static double angleOffset = 0;
 
     public enum State {
-        Stow,
-
+        Stow, // TODO: REDO ALL STATES
         IntakeFromGround,
         IntakeFromSlidingHumanPlayer,
-
         Shooting,
         HighNode,
         MidNode,
-
         Balance
     }
 
@@ -88,15 +85,15 @@ public class RobotContainer {
     private final String[] autonChoices =
             new String[] {
                 "GyroTest",
-                "LeftPlacePickup",
-                "LeftPlacePickupPlace",
-                "LeftPlacePickupShootBalance",
-                "MiddlePlace",
-                "MiddlePlaceBalance",
-                "MiddlePlaceExitBalance",
-                "RightPlacePickup",
-                "RightPlacePickupPlace",
-                "RightPlacePickupShootBalance",
+                // "LeftPlacePickup",
+                // "LeftPlacePickupPlace",
+                // "LeftPlacePickupShootBalance",
+                // "MiddlePlace",
+                // "MiddlePlaceBalance",
+                // "MiddlePlaceExitBalance",
+                // "RightPlacePickup",
+                // "RightPlacePickupPlace",
+                // "RightPlacePickupShootBalance",
             };
 
     public final SwerveAutoBuilder autoBuilder =
@@ -136,33 +133,34 @@ public class RobotContainer {
      * event markers can be created in PathPlanner.
      */
     private void eventAssignment() {
-        eventMap.put(
-                "PreparePickup", new PreparePickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
-        eventMap.put("Pickup", new Pickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
-        eventMap.put(
-                "PlaceCubeMid",
-                new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, false));
-        eventMap.put(
-                "PlaceConeMid",
-                new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, true));
-        eventMap.put(
-                "PlaceCubeHigh",
-                new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 1, false));
-        eventMap.put("PlaceLow", new AutonIntakeNoCurrentLimit(s_Intake).withTimeout(0.3));
-        eventMap.put("Balance", new Balance(s_Swerve, s_Led));
-        eventMap.put(
-                "BalanceWithShoot",
-                new BalanceWithShoot(s_Swerve, s_Led, s_Claw, s_ArmElevator, s_Elevator, s_Intake));
+        // eventMap.put(
+        //         "PreparePickup", new PreparePickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
+        // eventMap.put("Pickup", new Pickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
+        // eventMap.put(
+        //         "PlaceCubeMid",
+        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, false));
+        // eventMap.put(
+        //         "PlaceConeMid",
+        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, true));
+        // eventMap.put(
+        //         "PlaceCubeHigh",
+        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 1, false));
+        // eventMap.put("PlaceLow", new AutonIntakeNoCurrentLimit(s_Intake).withTimeout(0.3));
+        // eventMap.put("Balance", new Balance(s_Swerve, s_Led));
+        // eventMap.put(
+        //         "BalanceWithShoot",
+        //         new BalanceWithShoot(s_Swerve, s_Led, s_Claw, s_ArmElevator, s_Elevator, s_Intake));
     }
+
     // The RightPlacePickupPlaceBalance is : 1 foot from DriverStation blue line (x: 2.16), 6 inches
     // from Right wall (y: 0.76).
     // The
     /** Use this method to add Autonomous paths, displayed with {@link AutonManager} */
     private void addAutonomousChoices() {
         autonManager.addDefaultOption("Do Nothing.", new InstantCommand());
-        autonManager.addOption(
-                "Diagnostic",
-                new Diagnostic(s_Elevator, s_ArmElevator, s_Claw, s_Intake, s_Swerve).withTimeout(1.5));
+        //  autonManager.addOption(
+        //      "Diagnostic",
+        //      new Diagnostic(s_Elevator, s_ArmElevator, s_Claw, s_Intake, s_Swerve).withTimeout(1.5));
         for (var i = 0; i < autonChoices.length; i++) {
             autonManager.addOption(
                     autonChoices[i],
@@ -229,58 +227,58 @@ public class RobotContainer {
         // ! driverController.buttonB.onTrue(new Balance(s_Swerve));
 
         // April Tag Mode
-        driverController.leftTrigger.onTrue(
-                new InstantCommand(
-                        () -> {
-                            Limelight.setMode(1);
-                            // Limelight.setPipeline(0);
-                            isCone = false;
-                        }));
+        // driverController.leftTrigger.onTrue(
+        //         new InstantCommand(
+        //                 () -> {
+        //                     Limelight.setMode(1);
+        //                     // Limelight.setPipeline(0);
+        //                     isCone = false;
+        //                 }));
 
         // Reflective Tape Mode
-        driverController.rightTrigger.onTrue(
-                new InstantCommand(
-                        () -> {
-                            // Limelight.setPipeline(1);
-                            Limelight.setMode(3);
-                            isCone = true;
-                        }));
+        // driverController.rightTrigger.onTrue(
+        //         new InstantCommand(
+        //                 () -> {
+        //                     // Limelight.setPipeline(1);
+        //                     Limelight.setMode(3);
+        //                     isCone = true;
+        //                 }));
 
-        driverController.buttonStart.onTrue(
-                new InstantCommand(
-                        () -> {
-                            s_Led.setAnimation("VIVELAFRANCE", true);
-                        }));
-        driverController.buttonBack.onTrue(
-                new InstantCommand(
-                        () -> {
-                            s_Led.setAnimation("VIVELAFRANCE", false);
-                        }));
+        // driverController.buttonStart.onTrue(
+        //         new InstantCommand(
+        //                 () -> {
+        //                     s_Led.setAnimation("VIVELAFRANCE", true);
+        //                 }));
+        // driverController.buttonBack.onTrue(
+        //         new InstantCommand(
+        //                 () -> {
+        //                     s_Led.setAnimation("VIVELAFRANCE", false);
+        //                 }));
 
-        s_Elevator.setDefaultCommand(new DriveElevator(operatorController, s_Elevator));
-        s_ArmElevator.setDefaultCommand(new DriveArmElevator(operatorController, s_ArmElevator));
-        s_Claw.setDefaultCommand(new DriveClaw(operatorController, s_Claw));
-        s_Intake.setDefaultCommand(new TeleopIntake(operatorController, s_Intake));
+        // s_Elevator.setDefaultCommand(new DriveElevator(operatorController, s_Elevator));
+        // s_ArmElevator.setDefaultCommand(new DriveArmElevator(operatorController, s_ArmElevator));
+        // s_Claw.setDefaultCommand(new DriveClaw(operatorController, s_Claw));
+        // s_Intake.setDefaultCommand(new TeleopIntake(operatorController, s_Intake));
 
-        operatorController.buttonA.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
-        driverController.rightBumper.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.buttonB.onTrue(new MidNodePosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.buttonY.onTrue(new HighNodePosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.buttonX.onTrue(new Position(s_ArmElevator, s_Elevator, s_Claw));
+        // operatorController.buttonA.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
+        // driverController.rightBumper.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.buttonB.onTrue(new MidNodePosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.buttonY.onTrue(new HighNodePosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.buttonX.onTrue(new Position(s_ArmElevator, s_Elevator, s_Claw))   `;
         // operatorController.buttonY.onTrue(new Place(s_Swerve, Limelight, s_Claw,s_Arm, s_Elevator,
         // s_Intake, 1, true ));
 
         // Emergency mode
-        operatorController.buttonBack.onTrue(
-                new InstantCommand(
-                        () -> {
-                            if (getResetPosMode()) {
-                                s_Elevator.resetEncoderValue();
-                                s_ArmElevator.resetEncoderValue();
-                                s_Claw.resetEncoderValue();
-                            }
-                            ;
-                        }));
+        // operatorController.buttonBack.onTrue(
+        //         new InstantCommand(
+        //                 () -> {
+        //                     if (getResetPosMode()) {
+        //                         s_Elevator.resetEncoderValue();
+        //                         s_ArmElevator.resetEncoderValue();
+        //                         s_Claw.resetEncoderValue();
+        //                     }
+        //                     ;
+        //                 }));
 
         operatorController.buttonStart.onTrue(
                 new InstantCommand(
@@ -294,14 +292,14 @@ public class RobotContainer {
                         }));
 
         // operatorController.dPadDown.onTrue(new IntakeFromGroundPosition(s_Elevator, s_Arm, s_Claw));
-        operatorController.dPadDown.onTrue(
-                new IntakeFromGroundPosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.dPadUp.onTrue(
-                new IntakeFromHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.dPadRight.onTrue(
-                new IntakeFromSlidingHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
-        operatorController.dPadLeft.onTrue(new ShootPiece(s_Intake, s_Elevator, s_ArmElevator, s_Claw));
-        // ! operatorController.dPadLeft.onTrue(new IntakeFromGroundLowPosition(s_Elevator,
+        // operatorController.dPadDown.onTrue(
+        //         new IntakeFromGroundPosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.dPadUp.onTrue(
+        //         new IntakeFromHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.dPadRight.onTrue(
+        //         new IntakeFromSlidingHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.dPadLeft.onTrue(new ShootPiece(s_Intake, s_Elevator, s_ArmElevator, s_Claw));
+        // operatorController.dPadLeft.onTrue(new IntakeFromGroundLowPosition(s_Elevator,
         // s_ArmElevator, s_Claw));
     }
 
