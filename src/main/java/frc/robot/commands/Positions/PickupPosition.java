@@ -2,24 +2,24 @@ package frc.robot.commands.Positions;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.Presets;
-import frc.robot.Constants.Presets.Stow;
+import frc.robot.Constants.Presets.Pickup;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.MechanicalParts.WristSubsystem;
 
-public class StowPosition extends CommandBase {
+public class PickupPosition extends CommandBase {
 
     private final WristSubsystem s_wrist;
 
-    public StowPosition(
-        WristSubsystem s_ClawSubsystem) {
-        addRequirements(s_ClawSubsystem);
-        this.s_wrist = s_ClawSubsystem;
+    public PickupPosition(
+        WristSubsystem s_WristSubsystem) {
+        addRequirements(s_WristSubsystem);
+        this.s_wrist = s_WristSubsystem;
     }
 
     @Override
     public void execute() {
-        RobotContainer.setCurrentState(RobotContainer.State.Stow);
-        s_wrist.setDegrees(Stow.ClawPosition);
+        RobotContainer.setCurrentState(RobotContainer.State.Pickup);
+        s_wrist.setDegrees(Pickup.ClawPosition);
         if (!s_wrist.atTargetAngle()) return;
     }
 

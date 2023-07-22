@@ -9,7 +9,7 @@ import frc.robot.commands.Positions.Nodes.MidNodePosition;
 import frc.robot.commands.Positions.StowPosition;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.MechanicalParts.ArmElevatorSubsystem;
-import frc.robot.subsystems.MechanicalParts.ClawSubsystem;
+import frc.robot.subsystems.MechanicalParts.WristSubsystem;
 import frc.robot.subsystems.MechanicalParts.ElevatorSubsystem;
 import frc.robot.subsystems.MechanicalParts.IntakeSubsystem;
 import frc.robot.subsystems.Swerve.Swerve;
@@ -19,7 +19,7 @@ public class Place extends SequentialCommandGroup {
     public Place(
             Swerve s_Swerve,
             LimelightSubsystem s_Limelight,
-            ClawSubsystem s_Claw,
+            WristSubsystem s_Claw,
             ArmElevatorSubsystem s_ArmElevator,
             ElevatorSubsystem s_Elevator,
             IntakeSubsystem s_Intake,

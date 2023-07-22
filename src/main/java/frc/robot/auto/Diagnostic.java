@@ -1,33 +1,26 @@
 /** Thank you GOFIRST-Robotics! */
+// ! No clue if this works TODO: Mateo please look over this
 package frc.robot.auto;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.Positions.StowPosition;
-import frc.robot.subsystems.MechanicalParts.ArmElevatorSubsystem;
-import frc.robot.subsystems.MechanicalParts.ClawSubsystem;
-import frc.robot.subsystems.MechanicalParts.ElevatorSubsystem;
+import frc.robot.subsystems.MechanicalParts.WristSubsystem;
 import frc.robot.subsystems.MechanicalParts.IntakeSubsystem;
 import frc.robot.subsystems.Swerve.Swerve;
 
 public class Diagnostic extends CommandBase {
 
-    private final ElevatorSubsystem s_Elevator;
-    private final ArmElevatorSubsystem s_ArmElevator;
-    private final ClawSubsystem s_Claw;
+    private final WristSubsystem s_Claw;
     private final IntakeSubsystem s_Intake;
     private final Swerve s_Swerve;
 
     /** Command to use Gyro data to resist the tip angle from the beam - to stabilize and balance. */
     public Diagnostic(
-            ElevatorSubsystem s_Elevator,
-            ArmElevatorSubsystem s_ArmElevatorSubsystem,
-            ClawSubsystem s_Claw,
+            WristSubsystem s_Claw,
             IntakeSubsystem s_Intake,
             Swerve s_Swerve) {
-        addRequirements(s_Elevator, s_ArmElevatorSubsystem, s_Claw, s_Intake, s_Swerve);
-        this.s_Elevator = s_Elevator;
-        this.s_ArmElevator = s_ArmElevatorSubsystem;
+        addRequirements(s_Claw, s_Intake, s_Swerve);
         this.s_Claw = s_Claw;
         this.s_Intake = s_Intake;
         this.s_Swerve = s_Swerve;
@@ -35,8 +28,6 @@ public class Diagnostic extends CommandBase {
 
     @Override
     public void execute() {
-        s_Elevator.drive(0.1);
-        s_ArmElevator.drive(0.05);
         s_Claw.driveClaw(0.025);
         s_Intake.intake(.2, true);
         s_Swerve.drive(new Translation2d(0.3, 0.3), 0, false);
@@ -45,7 +36,7 @@ public class Diagnostic extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        new StowPosition(s_Elevator, s_ArmElevator, s_Claw);
+        new StowPosition(s_Claw);
         s_Intake.intake(0, false);
         s_Swerve.drive(new Translation2d(0.3, 0), 0, false);
     }

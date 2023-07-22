@@ -13,7 +13,7 @@ import frc.robot.RobotContainer;
 import frc.util.math.Convert;
 import frc.util.math.Convert.Encoder;
 
-public class ClawSubsystem extends SubsystemBase {
+public class WristSubsystem extends SubsystemBase {
 
     public double kWristGearRatio = 1.0 / 40.0;
 
@@ -24,7 +24,7 @@ public class ClawSubsystem extends SubsystemBase {
     private final SparkMaxPIDController mPivotPIDController;
     private double wristHeight;
 
-    public ClawSubsystem() {
+    public WristSubsystem() {
         wristHeight = Claw.initialHeight;
         mPivotMotor = new CANSparkMax(Claw.kPivotMotorId, MotorType.kBrushless);
         mPivotMotor.restoreFactoryDefaults();

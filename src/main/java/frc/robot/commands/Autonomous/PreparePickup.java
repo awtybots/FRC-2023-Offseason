@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 import frc.robot.commands.Positions.Intake.IntakeFromGroundPosition;
 import frc.robot.subsystems.MechanicalParts.ArmElevatorSubsystem;
-import frc.robot.subsystems.MechanicalParts.ClawSubsystem;
+import frc.robot.subsystems.MechanicalParts.WristSubsystem;
 import frc.robot.subsystems.MechanicalParts.ElevatorSubsystem;
 import frc.robot.subsystems.MechanicalParts.IntakeSubsystem;
 
 public class PreparePickup extends SequentialCommandGroup {
 
     public PreparePickup(
-            ClawSubsystem s_Claw,
+            WristSubsystem s_Claw,
             ArmElevatorSubsystem s_ArmElevator,
             ElevatorSubsystem s_Elevator,
             IntakeSubsystem s_Intake,

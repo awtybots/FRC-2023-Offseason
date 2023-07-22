@@ -57,20 +57,17 @@ public class RobotContainer {
     // private final ElevatorSubsystem s_Elevator = new ElevatorSubsystem();
     // private final ArmSubsystem s_Arm = new ArmSubsystem();
     // private final ArmElevatorSubsystem s_ArmElevator = new ArmElevatorSubsystem();
-    // private final ClawSubsystem s_Claw = new ClawSubsystem();
-    // ! private final IntakeSubsystem s_Intake = new IntakeSubsystem(s_Led); TODO: needs to be replaced
+    private final WristSubsystem s_Wrist = new WristSubsystem();
+    private final IntakeSubsystem s_Intake = new IntakeSubsystem();
 
     private static boolean isCone = Constants.DefaultConfig.isCone;
     private static boolean resetPosMode = false;
     private static double angleOffset = 0;
 
     public enum State {
-        Stow, // TODO: REDO ALL STATES
-        IntakeFromGround,
-        IntakeFromSlidingHumanPlayer,
+        Stow,
+        Pickup,
         Shooting,
-        HighNode,
-        MidNode,
         Balance
     }
 

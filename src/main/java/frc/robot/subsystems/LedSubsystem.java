@@ -312,3 +312,8 @@ public class LedSubsystem extends SubsystemBase {
         m_led.start();
     }
 }
+
+
+// private final Debouncer currentFilter = new Debouncer(0.2, DebounceType.kRising);
+// import edu.wpi.first.math.filter.Debouncer;
+// import edu.wpi.first.math.filter.Debouncer.DebounceType;
