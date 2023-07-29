@@ -21,12 +21,11 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.auto.Diagnostic;
 import frc.robot.commands.Autonomous.Balance.Balance;
 
-import frc.robot.Shootin.DontShoot;
-import frc.robot.Shootin.ShootMid;
-import frc.robot.Shootin.ShootHigh;
+import frc.robot.commands.Shootin.DontShoot;
+import frc.robot.commands.Shootin.ShootMid;
+import frc.robot.commands.Shootin.ShootHigh;
 
 
 
@@ -62,11 +61,7 @@ public class RobotContainer {
 
     private final LimelightSubsystem Limelight = new LimelightSubsystem();
 
-    // private final ElevatorSubsystem s_Elevator = new ElevatorSubsystem();
-    // private final ArmSubsystem s_Arm = new ArmSubsystem();
-    // private final ArmElevatorSubsystem s_ArmElevator = new ArmElevatorSubsystem();
-    private final WristSubsystem s_Wrist = new WristSubsystem();
-    private final IntakeSubsystem s_Intake = new IntakeSubsystem();
+
 
 
     private final ShooterSubsystem s_Shooter = new ShooterSubsystem();
@@ -198,61 +193,6 @@ public class RobotContainer {
         driverController.buttonA.onTrue(new InstantCommand(() -> s_Swerve.toggleSwerveMode()));
         driverController.buttonY.onTrue(new InstantCommand(s_Swerve::zeroGyro));
 
-
-        // April Tag Mode
-        // driverController.leftTrigger.onTrue(
-        //         new InstantCommand(
-        //                 () -> {
-        //                     Limelight.setMode(1);
-        //                     // Limelight.setPipeline(0);
-        //                     isCone = false;
-        //                 }));
-
-        // Reflective Tape Mode
-        // driverController.rightTrigger.onTrue(
-        //         new InstantCommand(
-        //                 () -> {
-        //                     // Limelight.setPipeline(1);
-        //                     Limelight.setMode(3);
-        //                     isCone = true;
-        //                 }));
-
-        // driverController.buttonStart.onTrue(
-        //         new InstantCommand(
-        //                 () -> {
-        //                     s_Led.setAnimation("VIVELAFRANCE", true);
-        //                 }));
-        // driverController.buttonBack.onTrue(
-        //         new InstantCommand(
-        //                 () -> {
-        //                     s_Led.setAnimation("VIVELAFRANCE", false);
-        //                 }));
-
-        // s_Elevator.setDefaultCommand(new DriveElevator(operatorController, s_Elevator));
-        // s_ArmElevator.setDefaultCommand(new DriveArmElevator(operatorController, s_ArmElevator));
-        // s_Claw.setDefaultCommand(new DriveClaw(operatorController, s_Claw));
-        // s_Intake.setDefaultCommand(new TeleopIntake(operatorController, s_Intake));
-
-        // operatorController.buttonA.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
-        // driverController.rightBumper.onTrue(new StowPosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.buttonB.onTrue(new MidNodePosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.buttonY.onTrue(new HighNodePosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.buttonX.onTrue(new Position(s_ArmElevator, s_Elevator, s_Claw))   `;
-        // operatorController.buttonY.onTrue(new Place(s_Swerve, Limelight, s_Claw,s_Arm, s_Elevator,
-        // s_Intake, 1, true ));
-
-        // Emergency mode
-        // operatorController.buttonBack.onTrue(
-        //         new InstantCommand(
-        //                 () -> {
-        //                     if (getResetPosMode()) {
-        //                         s_Elevator.resetEncoderValue();
-        //                         s_ArmElevator.resetEncoderValue();
-        //                         s_Claw.resetEncoderValue();
-        //                     }
-        //                     ;
-        //                 }));
-
         operatorController.buttonStart.onTrue(
                 new InstantCommand(
                         () -> {
@@ -276,7 +216,6 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        isCone = false;
         // SendableChooser<InstantCommand> isConeChooser = new SendableChooser<InstantCommand>();
         // isConeChooser.setDefaultOption("Cube", new InstantCommand(() -> Limelight.setPipeline(0)));
         // isConeChooser.addOption("Cone", new InstantCommand(() -> Limelight.setPipeline(1)));

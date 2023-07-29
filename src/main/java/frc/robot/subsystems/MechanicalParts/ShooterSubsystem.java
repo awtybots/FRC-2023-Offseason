@@ -5,7 +5,15 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+import java.lang.Math;
 
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -61,7 +69,7 @@ public class ShooterSubsystem extends SubsystemBase {
         setShooter(1);
     }
 
-    public void setOff(){
+    public void setHigh(){
         setShooter(2);
     }
 
@@ -84,7 +92,7 @@ public class ShooterSubsystem extends SubsystemBase {
             CANSparkMax.ControlType.kVelocity);
         
             BottomMotorPidController.setReference(
-            Constants.ShooterPresets.Mid.BottomWheelSpeed,
+            Constants.ShooterPresets.Mid.bottomWheelSpeed,
             CANSparkMax.ControlType.kVelocity);
         }
         else if (ShootingLevel == 2){
@@ -93,7 +101,7 @@ public class ShooterSubsystem extends SubsystemBase {
                 CANSparkMax.ControlType.kVelocity);
         
         BottomMotorPidController.setReference(
-                Constants.ShooterPresets.High.BottomWheelSpeed,
+                Constants.ShooterPresets.High.bottomWheelSpeed,
                 CANSparkMax.ControlType.kVelocity);
         }
     }
