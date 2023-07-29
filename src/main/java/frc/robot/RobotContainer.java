@@ -4,11 +4,13 @@
 
 
 // TODO FOR OFFSEASON ROBOT
+//FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
 //TUNE TOP AND BOTTOM MOTOR POSITION
 //TUNE TOP AND BOTTOM MOTOR PIDS
 //SETUP SPARKMAX CAN ID
 //SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT
 //CODE INTAKE SUBSYSTEM WHICH JUST INTAKES ITS PRETTY SIMPLE
+
 
 package frc.robot;
 
@@ -20,7 +22,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.auto.Diagnostic;
-import frc.robot.commands.Autonomous.AutonIntakeNoCurrentLimit;
 import frc.robot.commands.Autonomous.Balance.Balance;
 
 import frc.robot.Shootin.DontShoot;
