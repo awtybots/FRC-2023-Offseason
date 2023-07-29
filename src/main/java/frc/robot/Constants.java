@@ -39,229 +39,44 @@ public final class Constants {
         public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 3;
         public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
     }
-
-    public static final class Presets {
-
-        public static final int ElevatorThreshold = 5000;
-        public static final int ArmThreshold = (int) (10 * Constants.Arm.armConversion);
-        public static final int ClawThreshold = 10;
-
-        public static final class Stow {
-            public static final double ElevatorPosition = 1.19377;
-            public static final int ArmPosition = 0;
-            public static final int ClawPosition = 0;
+    public static final class ShooterPresets{
+        public static final class High {
+            public static final double topWheelSpeed = 1;
+            public static final double bottomWheelSpeed = 1;
         }
 
-        public static final class Nodes {
-            public static final class Cube {
-                public static final class ShootCube {
-                    public static final double ElevatorPosition = 0;
-                    public static final double ArmPosition = 0;
-                    public static final double ClawPosition = -75.5;
-                }
-
-                public static final class MidNode {
-                    public static final double ElevatorPosition = 24.0269;
-                    public static final double ArmPosition = 0;
-                    public static final double ClawPosition = -104.786;
-                    // public static final int ElevatorPosition = 23700;
-                    // public static final double ArmPosition = 16.07 * Constants.Arm.armConversion;
-                    // public static final double ClawPosition = 11.714 * Constants.Claw.clawConversion;
-                }
-
-                public static final class HighNode {
-                    public static final double TransitionArmRotation = 26.916;
-                    public static final double ElevatorPosition = 48.498;
-                    public static final double ArmPosition = 26.916 * ArmElevator.convert;
-                    ;
-                    public static final double ClawPosition = -110.5719;
-                }
-            }
-
-            public static final class Cone {
-                public static final class MidNode {
-                    public static final double ElevatorPosition = 51.4045;
-                    public static final double ArmPosition = 10.952 * ArmElevator.convert;
-                    public static final double ClawPosition = -155.1426;
-
-                    // public static final int ElevatorPosition = 126270;
-                    // public static final double ArmPosition = 23.69;
-                    // public static final double ClawPosition = -6.214;
-                }
-
-                public static final class HighNode {
-                    public static final double TransitionArmRotation = 27.0;
-                    public static final double ElevatorPosition = 59.39;
-                    public static final double ArmPosition = 24.5;
-                    public static final double ClawPosition = -145.200;
-                    // public static final int TransitionArmRotation = 28;
-                    // public static final int ElevatorPosition = 194000;
-                    // public static final double ArmPosition = 46.78;
-                    // public static final double ClawPosition = -1.21;
-                }
-            }
-        }
-
-        public static final class Intake {
-            public static final class IntakeFromGroundLow {
-                public static final double ElevatorPosition = 1.1928;
-                public static final double ArmPosition = 0;
-                public static final double ClawPosition = 0;
-            }
-
-            public static final class Cube {
-                public static final class IntakeFromGround {
-                    public static final double ElevatorPosition = 1.194; // 1.206 inch on dash
-                    public static final double ArmPosition = 20.0 * ArmElevator.convert;
-                    ;
-                    public static final double ClawPosition = -183.074;
-                    // public static final int ElevatorPosition = 80000;
-                    // public static final double ArmPosition = 100.074;
-                    // public static final double ClawPosition = -5.11;
-                }
-
-                public static final class IntakeFromHumanPlayer {
-                    public static final double ElevatorPosition = 62.976;
-                    public static final double ArmPosition = 5.6428 * ArmElevator.convert;
-                    ;
-                    public static final double ClawPosition = -178.071;
-                }
-
-                public static final class IntakeFromSlidingHumanPlayer {
-                    public static final double ElevatorPosition = 1.1938;
-                    public static final double ArmPosition = 0;
-                    public static final double ClawPosition = -49.93;
-                    // public static final double ClawPosition = 13.2857; // TODO THIS
-                }
-            }
-
-            public static final class Cone {
-                public static final class IntakeFromGround {
-                    public static final double ElevatorPosition = 14.4489;
-                    public static final double ArmPosition = 12.714 * ArmElevator.convert;
-                    ;
-                    public static final double ClawPosition = -199.928; // ! -49.050;
-                }
-
-                public static final class IntakeFromHumanPlayer {
-                    public static final double ElevatorPosition = 54.4494;
-                    public static final double ArmPosition = 5.595 * ArmElevator.convert;
-                    ;
-                    public static final double ClawPosition = -145.4999; // ! 14.76;
-                }
-
-                public static final class IntakeFromSlidingHumanPlayer {
-                    public static final double ElevatorPosition = 1.1938;
-                    public static final double ArmPosition = 0; // ! 28.0167;
-                    public static final double ClawPosition = -49.93; // ! 17.82;
-                }
-            }
+        public static final class Mid {
+            public static final double topWheelSpeed = 1;
+            public static final double bottomWheelSpeed = 1;
         }
     }
+    public static final class Shooter{
+        public static final int kTopShooterID;
+        public static final int kBottomShooterID;
+        public static final double kP = 1;
+        public static final double kD = 0;
+        public static final double kI = 0;
 
-    public static final class Elevator {
-        public static final int kLeftElevatorMotorId = 20; // !
-        public static final int kRightElevatorMotorId = 21; // !
-        public static final int kElevatorEncoderId = 22; // !
+    }
+    public static final class ElevatorConveyerThing{
+        public static final int ConveyerCanID;
+        public static final double kP = 1;
+        public static final double kD;
+        public static final double kI;
 
-        public static final double kMaxPercentOutput = 0.75;
-        public static final double kRamp =
-                0.08; // seconds from zero to full throttle on elevator motors
-        public static final double kWinchDiameter =
-                1.751; // (inches) pitch diameter of #25 chain 22T sprocket
-        public static final double kGearRatio =
-                1.0 / 9; // output over input (9:1 reduction please double check this)
+        public static final double bingChillinVelocity = 1;//the constant motor velocity
 
-        // Heights
-        public static final int initialHeight = 4000;
-        public static final int minimumHeight = 4000;
-        public static final int maximumHeight = 198000;
-        public static final double ElevatorOffset = 0.05;
+        public static final double r=59;
+        public static final double g=1;
+        public static final double b=182;
 
-        // PID
-        public static final double kP = 0.25; // = 0.025;
-        public static final double kI = 0; // = 0.00;
-        public static final double kD = 0.1; // 0.015;
-        public static final double kF = 0;
+        public static final double WiggleRoom = 25;
 
-        public static final double arbitraryFeedforwardRate = 0.02; // 0.0425;
+
+
     }
 
-    public static final class ArmElevator {
 
-        public static final double convert = 1.1549647;
-
-        public static final int kArmMotorId = 7;
-        public static final int kCurrentLimit = 40;
-
-        public static final int initialExtent = 0;
-        public static final int minimumExtent = 0;
-        public static final double maximumExtend = 29;
-
-        public static final double kP = 0.1;
-        public static final double kI = 0.0;
-        public static final double kD = 0.0;
-        public static final double kF = 0.0;
-
-        public static final double rampRate = 0.3;
-    }
-
-    // ! OLD ARM
-    public static final class Arm {
-        public static final double armConversion = 216.0 / 184.0;
-
-        public static final int kLeftArmMotorId = 7;
-        public static final int kRightArmMotorId = 12;
-
-        public static final int kCurrentLimit = 40;
-
-        // Heights
-        public static final int initialHeight = 0;
-        public static final int minimumHeight = 0;
-        public static final int maximumHeight = (int) (70 * armConversion);
-
-        // PID
-        public static final double kP = 0.04; // 0.002
-        public static final double kI = 0; // 0.0001
-        public static final double kD = 0.000;
-        public static final double kF = 0.00;
-
-        public static final double armLength = 0.54; // 0.54 m
-        public static final double startingAngle = 144;
-
-        public static final double rampRate = 0.6;
-        public static final double arbitraryFeedFowardRate = 0.1;
-    }
-
-    public static final class Claw {
-        public static final double clawConversion = 40.0 / 91.67;
-
-        public static final int kPivotMotorId = 6;
-        public static final int kIntakeMotorId = 15; // !
-
-        public static final double kMaxPercentOutput = 0.75;
-
-        public static final int kClawCurrentLimit = 40;
-        public static final int kIntakeCurrentLimit = 20;
-
-        public static final int initialHeight = 0;
-        public static final int minimumHeight = -80; // ! (int) (-15 * Constants.Claw.clawConversion);
-        public static final int maximumHeight = 0; // ! (int) (35 * Constants.Claw.clawConversion);
-
-        public static final double kP = 0.10;
-        public static final double kI = 0.00; // !
-        public static final double kD = 0.00;
-
-        public static final double startingAngle =
-                64; // ! ONLY FROM TOP OF WRIST NOT INDICATIVE OF MASS
-
-        public static final double arbitraryFeedFowardRate = 0.0;
-    }
-
-    public static final class Piston {
-        public static final int kTraverseSolenoidF = 0;
-        public static final int kTraverseSolenoidR = 1;
-    }
 
     public static final class LimeLight {
         public static final double AprilTagHeight = 0.50;

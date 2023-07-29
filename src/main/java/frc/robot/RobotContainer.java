@@ -1,8 +1,14 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-//test shhh
 
+
+// TODO FOR OFFSEASON ROBOT
+//TUNE TOP AND BOTTOM MOTOR POSITION
+//TUNE TOP AND BOTTOM MOTOR PIDS
+//SETUP SPARKMAX CAN ID
+//SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT
+//CODE INTAKE SUBSYSTEM WHICH JUST INTAKES ITS PRETTY SIMPLE
 
 package frc.robot;
 
@@ -16,23 +22,20 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.auto.Diagnostic;
 import frc.robot.commands.Autonomous.AutonIntakeNoCurrentLimit;
 import frc.robot.commands.Autonomous.Balance.Balance;
-// import frc.robot.commands.Autonomous.Balance.BalanceWithShoot;
-// import frc.robot.commands.Autonomous.Pickup;
-// import frc.robot.commands.Autonomous.Place;
-// import frc.robot.commands.Autonomous.PreparePickup;
-// import frc.robot.commands.Autonomous.ShootPiece.Position; TODO: needs to be reimplemented
-// import frc.robot.commands.Autonomous.ShootPiece.ShootPiece;
+
+import frc.robot.Shootin.DontShoot;
+import frc.robot.Shootin.ShootMid;
+import frc.robot.Shootin.ShootHigh;
+
+
+
 import frc.robot.commands.DriveParts.*;
-// import frc.robot.commands.Positions.Intake.IntakeFromGroundPosition;
-// import frc.robot.commands.Positions.Intake.IntakeFromHumanPlayerPosition;
-// import frc.robot.commands.Positions.Intake.IntakeFromSlidingHumanPlayerPosition;
-// import frc.robot.commands.Positions.Nodes.HighNodePosition.HighNodePosition;
-// import frc.robot.commands.Positions.Nodes.MidNodePosition;
-// import frc.robot.commands.Positions.StowPosition;
+
 import frc.robot.subsystems.LedSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.MechanicalParts.*;
 import frc.robot.subsystems.Swerve.Swerve;
+import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
 // import frc.robot.subsystems.ledutils;
 // import frc.robot.subsystems.ledutils.patterens_eneum;
 import frc.util.AutonManager;
@@ -45,6 +48,8 @@ import java.util.HashMap;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
+
+
 public class RobotContainer {
 
     // Autonomous manager import
@@ -61,6 +66,10 @@ public class RobotContainer {
     // private final ArmElevatorSubsystem s_ArmElevator = new ArmElevatorSubsystem();
     private final WristSubsystem s_Wrist = new WristSubsystem();
     private final IntakeSubsystem s_Intake = new IntakeSubsystem();
+
+
+    private final ShooterSubsystem s_Shooter = new ShooterSubsystem();
+    private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy = new lilElevatorConveyerBeltThingy() //i would abreviate it but
 
     private static boolean resetPosMode = false;
     private static double angleOffset = 0;
@@ -82,16 +91,7 @@ public class RobotContainer {
 
     private final String[] autonChoices =
             new String[] {
-                "GyroTest",
-                // "LeftPlacePickup",
-                // "LeftPlacePickupPlace",
-                // "LeftPlacePickupShootBalance",
-                // "MiddlePlace",
-                // "MiddlePlaceBalance",
-                // "MiddlePlaceExitBalance",
-                // "RightPlacePickup",
-                // "RightPlacePickupPlace",
-                // "RightPlacePickupShootBalance",
+                "GyroTest"
             };
 
     public final SwerveAutoBuilder autoBuilder =
@@ -131,23 +131,7 @@ public class RobotContainer {
      * event markers can be created in PathPlanner.
      */
     private void eventAssignment() {
-        // eventMap.put(
-        //         "PreparePickup", new PreparePickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
-        // eventMap.put("Pickup", new Pickup(s_Claw, s_ArmElevator, s_Elevator, s_Intake, false));
-        // eventMap.put(
-        //         "PlaceCubeMid",
-        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, false));
-        // eventMap.put(
-        //         "PlaceConeMid",
-        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 0, true));
-        // eventMap.put(
-        //         "PlaceCubeHigh",
-        //         new Place(s_Swerve, Limelight, s_Claw, s_ArmElevator, s_Elevator, s_Intake, 1, false));
-        // eventMap.put("PlaceLow", new AutonIntakeNoCurrentLimit(s_Intake).withTimeout(0.3));
-        // eventMap.put("Balance", new Balance(s_Swerve, s_Led));
-        // eventMap.put(
-        //         "BalanceWithShoot",
-        //         new BalanceWithShoot(s_Swerve, s_Led, s_Claw, s_ArmElevator, s_Elevator, s_Intake));
+
     }
 
     // The RightPlacePickupPlaceBalance is : 1 foot from DriverStation blue line (x: 2.16), 6 inches
@@ -156,9 +140,7 @@ public class RobotContainer {
     /** Use this method to add Autonomous paths, displayed with {@link AutonManager} */
     private void addAutonomousChoices() {
         autonManager.addDefaultOption("Do Nothing.", new InstantCommand());
-        //  autonManager.addOption(
-        //      "Diagnostic",
-        //      new Diagnostic(s_Elevator, s_ArmElevator, s_Claw, s_Intake, s_Swerve).withTimeout(1.5));
+
         for (var i = 0; i < autonChoices.length; i++) {
             autonManager.addOption(
                     autonChoices[i],
@@ -169,7 +151,6 @@ public class RobotContainer {
                                             Constants.Auton.kMaxSpeedMetersPerSecond,
                                             Constants.Auton.kMaxAccelerationMetersPerSecondSquared))));
         }
-        // Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared))));
     }
 
 
@@ -215,8 +196,7 @@ public class RobotContainer {
 
         driverController.buttonA.onTrue(new InstantCommand(() -> s_Swerve.toggleSwerveMode()));
         driverController.buttonY.onTrue(new InstantCommand(s_Swerve::zeroGyro));
-        // ! driverController.buttonX.onTrue(new AutomatedVisionTracking(s_Swerve, Limelight));
-        // ! driverController.buttonB.onTrue(new Balance(s_Swerve));
+
 
         // April Tag Mode
         // driverController.leftTrigger.onTrue(
@@ -283,16 +263,10 @@ public class RobotContainer {
                             setResetPosMode(false);
                         }));
 
-        // operatorController.dPadDown.onTrue(new IntakeFromGroundPosition(s_Elevator, s_Arm, s_Claw));
-        // operatorController.dPadDown.onTrue(
-        //         new IntakeFromGroundPosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.dPadUp.onTrue(
-        //         new IntakeFromHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.dPadRight.onTrue(
-        //         new IntakeFromSlidingHumanPlayerPosition(s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.dPadLeft.onTrue(new ShootPiece(s_Intake, s_Elevator, s_ArmElevator, s_Claw));
-        // operatorController.dPadLeft.onTrue(new IntakeFromGroundLowPosition(s_Elevator,
-        // s_ArmElevator, s_Claw));
+
+        operatorController.dPadRight.onTrue(new ShootMid(s_Shooter, s_lilElevatorConveyerBeltThingy));
+        operatorController.dPadUp.onTrue(new ShootHigh(s_Shooter, s_lilElevatorConveyerBeltThingy));
+        operatorController.dPadDown.onTrue(new DontShoot(s_Shooter, s_lilElevatorConveyerBeltThingy));
     }
 
     /**
