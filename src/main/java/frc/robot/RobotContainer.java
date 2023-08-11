@@ -5,11 +5,11 @@
 
 // TODO FOR OFFSEASON ROBOT
 //FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
+//SETUP SPARKMAX CAN IDS ON EVERYTHING
+//SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
 //TUNE TOP AND BOTTOM MOTOR POSITION
 //TUNE TOP AND BOTTOM MOTOR PIDS
-//SETUP SPARKMAX CAN ID
-//SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT
-//CODE INTAKE SUBSYSTEM WHICH JUST INTAKES ITS PRETTY SIMPLE
+
 
 
 package frc.robot;
@@ -65,7 +65,8 @@ public class RobotContainer {
 
 
     private final ShooterSubsystem s_Shooter = new ShooterSubsystem();
-    private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy = new lilElevatorConveyerBeltThingy() //i would abreviate it but
+    private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy = new lilElevatorConveyerBeltThingy(); //i would abreviate it but
+    private final intakeSubsystem s_intake = new intakeSubsystem();
 
     private static boolean resetPosMode = false;
     private static double angleOffset = 0;
@@ -203,6 +204,14 @@ public class RobotContainer {
                         () -> {
                             setResetPosMode(false);
                         }));
+
+        operatorController.leftTrigger.onTrue(
+            new InstantCommand(
+                () -> {s_intake.doIntake();}));
+
+        operatorController.leftTrigger.onFalse(
+            new InstantCommand(
+        () -> {s_intake.doAntiIntake();}));
 
 
         operatorController.dPadRight.onTrue(new ShootMid(s_Shooter, s_lilElevatorConveyerBeltThingy));

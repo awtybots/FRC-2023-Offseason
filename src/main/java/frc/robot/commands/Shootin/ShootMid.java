@@ -29,6 +29,6 @@ public class ShootMid extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return s_lilElevatorConveyerBeltThingy.isDoneWithStuff()
+        return s_lilElevatorConveyerBeltThingy.isDoneWithStuff();
     }
 }

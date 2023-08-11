@@ -61,8 +61,8 @@ public final class Constants {
     public static final class ElevatorConveyerThing{
         public static final int ConveyerCanID;
         public static final double kP = 1;
-        public static final double kD;
-        public static final double kI;
+        public static final double kD = 0;
+        public static final double kI = 0;
 
         public static final double bingChillinVelocity = 1;//the constant motor velocity
 
@@ -73,6 +73,16 @@ public final class Constants {
         public static final double WiggleRoom = 25;
 
 
+
+    }
+
+    public static final class intake{
+        public static final int intakeCanID;
+        public static final double kP = 1;
+        public static final double kD = 0;
+        public static final double kI = 0;
+
+        public static final double intakeVelocity = 1;//the constant motor velocity
 
     }
 
