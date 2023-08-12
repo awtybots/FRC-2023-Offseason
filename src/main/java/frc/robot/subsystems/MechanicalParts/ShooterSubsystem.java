@@ -4,6 +4,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -40,10 +42,13 @@ public class ShooterSubsystem extends SubsystemBase {
         TopMotorPidController.setP(Constants.Shooter.kP);
         TopMotorPidController.setI(Constants.Shooter.kI);
         TopMotorPidController.setD(Constants.Shooter.kD);
+        TopMotorPidController.setFF(Constants.Shooter.kFF);
 
         BottomMotorPidController.setP(Constants.Shooter.kP);
         BottomMotorPidController.setI(Constants.Shooter.kI);
         BottomMotorPidController.setD(Constants.Shooter.kD);
+        BottomMotorPidController.setFF(Constants.Shooter.kFF);
+
     }
 
     public void setShooter(int level) {
@@ -64,6 +69,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
+        
         if (ShootingLevel == 0) {
             TopMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
 
@@ -82,5 +88,25 @@ public class ShooterSubsystem extends SubsystemBase {
             BottomMotorPidController.setReference(
                     Constants.ShooterPresets.High.bottomWheelSpeed, CANSparkMax.ControlType.kVelocity);
         }
+
+
+
+        /*
+        if (ShootingLevel == 0) {
+            mTopShooterMotor.set(0);
+
+            mBottomShooterMotor.set(0);
+
+        } else if (ShootingLevel == 1) {
+            mTopShooterMotor.set(Constants.ShooterPresets.Mid.topWheelSpeed);
+            mBottomShooterMotor.set(Constants.ShooterPresets.Mid.bottomWheelSpeed);
+
+        } else if (ShootingLevel == 2) {
+            mTopShooterMotor.set(Constants.ShooterPresets.High.topWheelSpeed);
+            mBottomShooterMotor.set(Constants.ShooterPresets.High.bottomWheelSpeed);
     }
-}
+    */
+    SmartDashboard.putNumber("TopShooterVelocity",TopMotorEncoder.getVelocity() );
+    SmartDashboard.putNumber("BottomShooterVelocity",BottomMotorEncoder.getVelocity() );
+    
+}}
