@@ -1,20 +1,11 @@
 package frc.robot.subsystems.MechanicalParts;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
-
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-
-import java.lang.Math;
-
 
 public class ShooterSubsystem extends SubsystemBase {
     private CANSparkMax mTopShooterMotor;
@@ -26,20 +17,19 @@ public class ShooterSubsystem extends SubsystemBase {
     private final SparkMaxPIDController TopMotorPidController;
     private final SparkMaxPIDController BottomMotorPidController;
 
-    public int ShootingLevel = 0; //0 = not moving, 1 = mid node, 2 = high node
+    public int ShootingLevel = 0; // 0 = not moving, 1 = mid node, 2 = high node
 
-    public ShooterSubsystem(){
+    public ShooterSubsystem() {
         mTopShooterMotor = new CANSparkMax(Constants.Shooter.kTopShooterID, MotorType.kBrushless);
         mTopShooterMotor.restoreFactoryDefaults();
-        
+
         mBottomShooterMotor = new CANSparkMax(Constants.Shooter.kBottomShooterID, MotorType.kBrushless);
         mBottomShooterMotor.restoreFactoryDefaults();
 
-        //mTopShooterMotor.setInverted(true);
+        // mTopShooterMotor.setInverted(true);
 
         mTopShooterMotor.setSmartCurrentLimit(30);
         mBottomShooterMotor.setSmartCurrentLimit(30);
-
 
         TopMotorPidController = mTopShooterMotor.getPIDController();
         BottomMotorPidController = mBottomShooterMotor.getPIDController();
@@ -54,56 +44,43 @@ public class ShooterSubsystem extends SubsystemBase {
         BottomMotorPidController.setP(Constants.Shooter.kP);
         BottomMotorPidController.setI(Constants.Shooter.kI);
         BottomMotorPidController.setD(Constants.Shooter.kD);
-
     }
 
-    public void setShooter(int level){
+    public void setShooter(int level) {
         ShootingLevel = level;
     }
 
-    public void setOff(){
+    public void setOff() {
         setShooter(0);
     }
 
-    public void setMid(){
+    public void setMid() {
         setShooter(1);
     }
 
-    public void setHigh(){
+    public void setHigh() {
         setShooter(2);
     }
 
     @Override
     public void periodic() {
-        if (ShootingLevel==0){
-            TopMotorPidController.setReference(
-            0,
-            CANSparkMax.ControlType.kVelocity);
-        
-            BottomMotorPidController.setReference(
-            0,
-            CANSparkMax.ControlType.kVelocity);
+        if (ShootingLevel == 0) {
+            TopMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
 
+            BottomMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
 
-        }
-        else if (ShootingLevel == 1){
+        } else if (ShootingLevel == 1) {
             TopMotorPidController.setReference(
-            Constants.ShooterPresets.Mid.topWheelSpeed,
-            CANSparkMax.ControlType.kVelocity);
-        
+                    Constants.ShooterPresets.Mid.topWheelSpeed, CANSparkMax.ControlType.kVelocity);
+
             BottomMotorPidController.setReference(
-            Constants.ShooterPresets.Mid.bottomWheelSpeed,
-            CANSparkMax.ControlType.kVelocity);
-        }
-        else if (ShootingLevel == 2){
-        TopMotorPidController.setReference(
-                Constants.ShooterPresets.High.topWheelSpeed,
-                CANSparkMax.ControlType.kVelocity);
-        
-        BottomMotorPidController.setReference(
-                Constants.ShooterPresets.High.bottomWheelSpeed,
-                CANSparkMax.ControlType.kVelocity);
+                    Constants.ShooterPresets.Mid.bottomWheelSpeed, CANSparkMax.ControlType.kVelocity);
+        } else if (ShootingLevel == 2) {
+            TopMotorPidController.setReference(
+                    Constants.ShooterPresets.High.topWheelSpeed, CANSparkMax.ControlType.kVelocity);
+
+            BottomMotorPidController.setReference(
+                    Constants.ShooterPresets.High.bottomWheelSpeed, CANSparkMax.ControlType.kVelocity);
         }
     }
-
 }

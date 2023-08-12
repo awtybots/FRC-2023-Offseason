@@ -2,15 +2,12 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
 // TODO FOR OFFSEASON ROBOT
-//FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
-//SETUP SPARKMAX CAN IDS ON EVERYTHING
-//SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
-//TUNE TOP AND BOTTOM MOTOR POSITION
-//TUNE TOP AND BOTTOM MOTOR PIDS
-
-
+// FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
+// SETUP SPARKMAX CAN IDS ON EVERYTHING
+// SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
+// TUNE TOP AND BOTTOM MOTOR POSITION
+// TUNE TOP AND BOTTOM MOTOR PIDS
 
 package frc.robot;
 
@@ -21,23 +18,16 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.commands.Autonomous.Balance.Balance;
-
-import frc.robot.commands.Shootin.DontShoot;
-import frc.robot.commands.Shootin.ShootMid;
-import frc.robot.commands.Shootin.ShootHigh;
-
-
-
+import frc.robot.commands.DontShoot;
 import frc.robot.commands.DriveParts.*;
-
-import frc.robot.subsystems.LedSubsystem;
+import frc.robot.commands.ShootHigh;
+import frc.robot.commands.ShootMid;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.MechanicalParts.*;
-import frc.robot.subsystems.Swerve.Swerve;
 import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
 // import frc.robot.subsystems.ledutils;
 // import frc.robot.subsystems.ledutils.patterens_eneum;
+import frc.robot.subsystems.Swerve.Swerve;
 import frc.util.AutonManager;
 import frc.util.Controller;
 import java.util.HashMap;
@@ -48,8 +38,6 @@ import java.util.HashMap;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
-
-
 public class RobotContainer {
 
     // Autonomous manager import
@@ -61,11 +49,9 @@ public class RobotContainer {
 
     private final LimelightSubsystem Limelight = new LimelightSubsystem();
 
-
-
-
     private final ShooterSubsystem s_Shooter = new ShooterSubsystem();
-    private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy = new lilElevatorConveyerBeltThingy(); //i would abreviate it but
+    private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy =
+            new lilElevatorConveyerBeltThingy(); // i would abreviate it but
     private final intakeSubsystem s_intake = new intakeSubsystem();
 
     private static boolean resetPosMode = false;
@@ -86,10 +72,7 @@ public class RobotContainer {
 
     private final HashMap<String, Command> eventMap = new HashMap<>();
 
-    private final String[] autonChoices =
-            new String[] {
-                "GyroTest"
-            };
+    private final String[] autonChoices = new String[] {"GyroTest"};
 
     public final SwerveAutoBuilder autoBuilder =
             new SwerveAutoBuilder(
@@ -127,9 +110,7 @@ public class RobotContainer {
      * Use this method to define the command or command groups to be run at each event marker key. New
      * event markers can be created in PathPlanner.
      */
-    private void eventAssignment() {
-
-    }
+    private void eventAssignment() {}
 
     // The RightPlacePickupPlaceBalance is : 1 foot from DriverStation blue line (x: 2.16), 6 inches
     // from Right wall (y: 0.76).
@@ -149,8 +130,6 @@ public class RobotContainer {
                                             Constants.Auton.kMaxAccelerationMetersPerSecondSquared))));
         }
     }
-
-
 
     public static boolean getResetPosMode() {
         return resetPosMode;
@@ -206,13 +185,16 @@ public class RobotContainer {
                         }));
 
         operatorController.leftTrigger.onTrue(
-            new InstantCommand(
-                () -> {s_intake.doIntake();}));
+                new InstantCommand(
+                        () -> {
+                            s_intake.doIntake();
+                        }));
 
         operatorController.leftTrigger.onFalse(
-            new InstantCommand(
-        () -> {s_intake.doAntiIntake();}));
-
+                new InstantCommand(
+                        () -> {
+                            s_intake.doAntiIntake();
+                        }));
 
         operatorController.dPadRight.onTrue(new ShootMid(s_Shooter, s_lilElevatorConveyerBeltThingy));
         operatorController.dPadUp.onTrue(new ShootHigh(s_Shooter, s_lilElevatorConveyerBeltThingy));

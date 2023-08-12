@@ -1,17 +1,16 @@
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
 import frc.robot.subsystems.MechanicalParts.lilElevatorConveyerBeltThingy;
 
-
-public class DontShoot extends CommandBase {
+public class ShootMid extends CommandBase {
 
     private final ShooterSubsystem s_Shooter;
     private final lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy;
 
-    public DontShoot(ShooterSubsystem s_Shooter, lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy) {
+    public ShootMid(
+            ShooterSubsystem s_Shooter, lilElevatorConveyerBeltThingy s_lilElevatorConveyerBeltThingy) {
         addRequirements(s_Shooter, s_lilElevatorConveyerBeltThingy);
         this.s_Shooter = s_Shooter;
         this.s_lilElevatorConveyerBeltThingy = s_lilElevatorConveyerBeltThingy;
@@ -19,13 +18,12 @@ public class DontShoot extends CommandBase {
 
     @Override
     public void initialize() {
-        s_Shooter.setOff();
-        s_lilElevatorConveyerBeltThingy.stopShooting();
+        s_Shooter.setMid();
+        s_lilElevatorConveyerBeltThingy.shoot();
     }
 
     @Override
-    public void end(boolean interrupted) {
-    }
+    public void end(boolean interrupted) {}
 
     @Override
     public boolean isFinished() {

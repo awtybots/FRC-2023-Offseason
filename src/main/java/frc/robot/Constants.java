@@ -17,6 +17,28 @@ import edu.wpi.first.math.util.Units;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
+/*
+CAN ID's
+    FrontLeftDrivingCanId = 10
+    RearLeftDrivingCanId = 8
+    FrontRightDrivingCanId = 2
+    RearRightDrivingCanId = 4
+
+    FrontLeftTurningCanId = 11
+    RearLeftTurningCanId = 9
+    FrontRightTurningCanId = 3
+    RearRightTurningCanId = 5
+
+    intake = 13 (right sparkmax)
+
+    conveyer = 14 (left sparkmax)
+    top shooter = 15
+    bottom shooter = 16
+
+    color sensor = 17
+
+ */
 public final class Constants {
     public static final class DefaultConfig {
         public static final boolean isCone = false;
@@ -39,7 +61,8 @@ public final class Constants {
         public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 3;
         public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
     }
-    public static final class ShooterPresets{
+
+    public static final class ShooterPresets {
         public static final class High {
             public static final double topWheelSpeed = 1;
             public static final double bottomWheelSpeed = 1;
@@ -50,43 +73,38 @@ public final class Constants {
             public static final double bottomWheelSpeed = 1;
         }
     }
-    public static final class Shooter{
-        public static final int kTopShooterID;
-        public static final int kBottomShooterID;
+
+    public static final class Shooter {
+        public static final int kTopShooterID = 15;
+        public static final int kBottomShooterID = 16;
         public static final double kP = 1;
         public static final double kD = 0;
         public static final double kI = 0;
-
     }
-    public static final class ElevatorConveyerThing{
-        public static final int ConveyerCanID;
+
+    public static final class ElevatorConveyerThing {
+        public static final int ConveyerCanID = 14;
         public static final double kP = 1;
         public static final double kD = 0;
         public static final double kI = 0;
 
-        public static final double bingChillinVelocity = 1;//the constant motor velocity
+        public static final double bingChillinVelocity = 1; // the constant motor velocity
 
-        public static final double r=59;
-        public static final double g=1;
-        public static final double b=182;
+        public static final double r = 59;
+        public static final double g = 1;
+        public static final double b = 182;
 
         public static final double WiggleRoom = 25;
-
-
-
     }
 
-    public static final class intake{
-        public static final int intakeCanID;
+    public static final class intake {
+        public static final int intakeCanID = 13;
         public static final double kP = 1;
         public static final double kD = 0;
         public static final double kI = 0;
 
-        public static final double intakeVelocity = 1;//the constant motor velocity
-
+        public static final double intakeVelocity = 1; // the constant motor velocity
     }
-
-
 
     public static final class LimeLight {
         public static final double AprilTagHeight = 0.50;
