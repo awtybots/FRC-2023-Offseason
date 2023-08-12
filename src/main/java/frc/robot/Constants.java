@@ -20,23 +20,20 @@ import edu.wpi.first.math.util.Units;
 
 /*
 CAN ID's
-    FrontLeftDrivingCanId = 10
-    RearLeftDrivingCanId = 8
-    FrontRightDrivingCanId = 2
-    RearRightDrivingCanId = 4
+FrontLeftDrivingCanId = 10
+RearLeftDrivingCanId = 8
+FrontRightDrivingCanId = 2
+RearRightDrivingCanId = 4
 
-    FrontLeftTurningCanId = 11
-    RearLeftTurningCanId = 9
-    FrontRightTurningCanId = 3
-    RearRightTurningCanId = 5
+FrontLeftTurningCanId = 11
+RearLeftTurningCanId = 9
+FrontRightTurningCanId = 3
+RearRightTurningCanId = 5
 
-    intake = 13 (right sparkmax)
-
-    conveyer = 14 (left sparkmax)
-    top shooter = 15
-    bottom shooter = 16
-
-    color sensor = 17
+intake = 13
+conveyer = 14
+top shooter = 15
+bottom shooter = 16
 
  */
 public final class Constants {
