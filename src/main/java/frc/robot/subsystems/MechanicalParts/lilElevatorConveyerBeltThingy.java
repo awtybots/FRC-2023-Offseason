@@ -48,11 +48,12 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
     }
 
     public boolean IsCubeDetected() {
+        //set closeness to the sum of differences of each value to the color of the cube
         int closeness =
                 (int)
                         (Math.abs(Constants.ElevatorConveyerThing.r - getRed())
                                 + Math.abs(Constants.ElevatorConveyerThing.g - getGreen())
-                                + Math.abs(Constants.ElevatorConveyerThing.b - getBlue()));
+                                + Math.abs(Constants.ElevatorConveyerThing.b - getBlue())); 
         return (closeness < Constants.ElevatorConveyerThing.WiggleRoom);
     }
 

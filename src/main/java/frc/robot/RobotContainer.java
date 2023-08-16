@@ -3,11 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 // TODO FOR OFFSEASON ROBOT
-// FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
-// SETUP SPARKMAX CAN IDS ON EVERYTHING
-// SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
-// TUNE TOP AND BOTTOM MOTOR POSITION
-// TUNE TOP AND BOTTOM MOTOR PIDS
+// TUNE TOP AND BOTTOM MOTOR VELOCITIES FOR SHOOTER
+// TUNE PIDS FOR THE BELT
+// TUNE PIDS FOR INTAKE
+// PLUGIN COLOR SENSOR TO I2C SLOT ON ROBORIO
 
 package frc.robot;
 
@@ -25,8 +24,6 @@ import frc.robot.commands.ShootMid;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.MechanicalParts.*;
 import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
-// import frc.robot.subsystems.ledutils;
-// import frc.robot.subsystems.ledutils.patterens_eneum;
 import frc.robot.subsystems.Swerve.Swerve;
 import frc.util.AutonManager;
 import frc.util.Controller;
