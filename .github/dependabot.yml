@@ -20,4 +20,4 @@ updates:
     groups:
        junit:
           patterns:
-            - "junit*"  # A wildcard string that matches multiple dependency names
+            - "org.junit*"  # A wildcard string that matches multiple dependency names
