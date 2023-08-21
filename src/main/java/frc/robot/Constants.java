@@ -61,13 +61,13 @@ public final class Constants {
 
     public static final class ShooterPresets {
         public static final class High {
-            public static final double topWheelSpeed = 4000;
-            public static final double bottomWheelSpeed = 4000;
+            public static final double topWheelSpeed = 4300;
+            public static final double bottomWheelSpeed = 5600;
         }
 
         public static final class Mid {
-            public static final double topWheelSpeed = 5000;
-            public static final double bottomWheelSpeed = 5000;
+            public static final double topWheelSpeed = 3500*0.75*1.15;
+            public static final double bottomWheelSpeed = 4200*0.85*1.15;
         }
     }
 
