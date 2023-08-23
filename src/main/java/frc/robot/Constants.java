@@ -66,8 +66,8 @@ public final class Constants {
         }
 
         public static final class Mid {
-            public static final double topWheelSpeed = 3500*0.75*1.15;
-            public static final double bottomWheelSpeed = 4200*0.85*1.15;
+            public static final double topWheelSpeed = 3500 * 0.75 * 1.15;
+            public static final double bottomWheelSpeed = 4200 * 0.85 * 1.15;
         }
     }
 
