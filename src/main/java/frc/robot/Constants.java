@@ -66,8 +66,13 @@ public final class Constants {
         }
 
         public static final class Mid {
-            public static final double topWheelSpeed = 3500*0.75*1.15;
-            public static final double bottomWheelSpeed = 4200*0.85*1.15;
+            public static final double topWheelSpeed = 3500 * 0.75 * 1.15;
+            public static final double bottomWheelSpeed = 4200 * 0.85 * 1.15;
+        }
+
+        public static final class Far {
+            public static final double topWheelSpeed = 100000;
+            public static final double bottomWheelSpeed = 5600;
         }
     }
 
@@ -82,11 +87,11 @@ public final class Constants {
 
     public static final class ElevatorConveyerThing {
         public static final int ConveyerCanID = 14;
-        public static final double kP = 0.1;
+        public static final double kP = 0.000017;
         public static final double kD = 0;
         public static final double kI = 0;
 
-        public static final double bingChillinVelocity = 1; // the constant motor velocity
+        public static final double bingChillinVelocity = 500; // the constant motor velocity
 
         public static final double r = 59;
         public static final double g = 1;

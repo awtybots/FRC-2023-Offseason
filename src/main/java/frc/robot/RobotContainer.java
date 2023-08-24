@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.DontShoot;
 import frc.robot.commands.DriveParts.*;
+import frc.robot.commands.ShootFar;
 import frc.robot.commands.ShootHigh;
 import frc.robot.commands.ShootMid;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -198,6 +199,7 @@ public class RobotContainer {
 
         operatorController.dPadRight.onTrue(new ShootMid(s_Shooter, s_lilElevatorConveyerBeltThingy));
         operatorController.dPadUp.onTrue(new ShootHigh(s_Shooter, s_lilElevatorConveyerBeltThingy));
+        operatorController.dPadLeft.onTrue(new ShootFar(s_Shooter, s_lilElevatorConveyerBeltThingy));
         operatorController.dPadDown.onTrue(new DontShoot(s_Shooter, s_lilElevatorConveyerBeltThingy));
     }
 

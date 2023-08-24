@@ -67,6 +67,10 @@ public class ShooterSubsystem extends SubsystemBase {
         setShooter(2);
     }
 
+    public void setFar() {
+        setShooter(3);
+    }
+
     @Override
     public void periodic() {
         
@@ -87,6 +91,12 @@ public class ShooterSubsystem extends SubsystemBase {
 
             BottomMotorPidController.setReference(
                     Constants.ShooterPresets.High.bottomWheelSpeed, CANSparkMax.ControlType.kVelocity);
+        }else if (ShootingLevel == 3) {
+            TopMotorPidController.setReference(
+            Constants.ShooterPresets.Far.topWheelSpeed, CANSparkMax.ControlType.kVelocity);
+
+            BottomMotorPidController.setReference(
+            Constants.ShooterPresets.Far.bottomWheelSpeed, CANSparkMax.ControlType.kVelocity);
         }
 
 
