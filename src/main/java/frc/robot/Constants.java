@@ -94,6 +94,10 @@ public final class Constants {
 
         public static final double bingChillinVelocity = 300; // the constant motor velocity
 
+        public static final double r = 59;
+        public static final double g = 91;
+        public static final double b = 108;
+
         public static final double WiggleRoom = 25;
     }
 

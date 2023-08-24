@@ -35,7 +35,6 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
     public lilElevatorConveyerBeltThingy() {
         detectedColor = m_colorSensor.getColor();
 
-
         // sensor = new I2C(I2C.Port.kOnboard, 0x39); // 0x39 is the sensor's i2c address
         // sensor.write(
         //        0x00, 192); // 0b11000000 ... Power on, color sensor on. (page 20 of sensor datasheet)
@@ -57,7 +56,6 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
         BeltMotorPidController.setI(Constants.ElevatorConveyerThing.kI);
         BeltMotorPidController.setD(Constants.ElevatorConveyerThing.kD);
         BeltMotorPidController.setFF(Constants.ElevatorConveyerThing.kFF);
-
     }
 
     public boolean IsCubeDetected() {
@@ -110,7 +108,6 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
 
         detectedColor = m_colorSensor.getColor();
 
-
         if (!IsCubeDetected() || shootingTime > 0) {
             BeltMotorPidController.setReference(
                     Constants.ElevatorConveyerThing.bingChillinVelocity, CANSparkMax.ControlType.kVelocity);
@@ -121,6 +118,5 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
         if (shootingTime > -10) {
             shootingTime -= 1;
         }
-        
     }
 }
