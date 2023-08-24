@@ -92,7 +92,9 @@ public final class Constants {
         public static final double kI = 0;
         public static final double kFF = 0.00022;
 
-        public static final double bingChillinVelocity = 300; // the constant motor velocity
+        public static final double bingChillinVelocity = 450; // the constant motor velocity
+        public static final double bingFastinVelocity = 2000; // the constant motor velocity
+
 
         public static final double r = 59;
         public static final double g = 91;

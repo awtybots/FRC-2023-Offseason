@@ -109,8 +109,16 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
         detectedColor = m_colorSensor.getColor();
 
         if (!IsCubeDetected() || shootingTime > 0) {
-            BeltMotorPidController.setReference(
+            if (!IsCubeDetected()){
+                BeltMotorPidController.setReference(
                     Constants.ElevatorConveyerThing.bingChillinVelocity, CANSparkMax.ControlType.kVelocity);
+            }
+            if (shootingTime > 0){
+                BeltMotorPidController.setReference(
+                    Constants.ElevatorConveyerThing.bingFastinVelocity, CANSparkMax.ControlType.kVelocity);
+            }
+            
+
         } else {
             BeltMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
         }
