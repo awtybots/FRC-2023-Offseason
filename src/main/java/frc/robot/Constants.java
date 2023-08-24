@@ -90,12 +90,9 @@ public final class Constants {
         public static final double kP = 0.000017;
         public static final double kD = 0;
         public static final double kI = 0;
+        public static final double kFF = 0.00022;
 
-        public static final double bingChillinVelocity = 500; // the constant motor velocity
-
-        public static final double r = 59;
-        public static final double g = 1;
-        public static final double b = 182;
+        public static final double bingChillinVelocity = 300; // the constant motor velocity
 
         public static final double WiggleRoom = 25;
     }
