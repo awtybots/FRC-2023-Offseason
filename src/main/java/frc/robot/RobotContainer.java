@@ -4,7 +4,6 @@
 
 // TODO FOR OFFSEASON ROBOT
 // FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
-// SETUP SPARKMAX CAN IDS ON EVERYTHING
 // SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
 // TUNE TOP AND BOTTOM MOTOR POSITION
 // TUNE TOP AND BOTTOM MOTOR PIDS
@@ -15,6 +14,7 @@ import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -29,6 +29,7 @@ import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
 // import frc.robot.subsystems.ledutils;
 // import frc.robot.subsystems.ledutils.patterens_eneum;
 import frc.robot.subsystems.Swerve.Swerve;
+import frc.robot.commands.Autonomous.Balance.Balance;
 import frc.util.AutonManager;
 import frc.util.Controller;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class RobotContainer {
 
     private final HashMap<String, Command> eventMap = new HashMap<>();
 
-    private final String[] autonChoices = new String[] {"GyroTest"};
+    private final String[] autonChoices = new String[] {"RightPlaceTaxi", "RightPlaceBalance", "MiddlePlace", "MiddlePlaceBalance", "LeftPlaceBalance", "LeftPlaceTaxi", "DoNothing"};
 
     public final SwerveAutoBuilder autoBuilder =
             new SwerveAutoBuilder(
@@ -111,7 +112,10 @@ public class RobotContainer {
      * Use this method to define the command or command groups to be run at each event marker key. New
      * event markers can be created in PathPlanner.
      */
-    private void eventAssignment() {}
+    private void eventAssignment() {
+        eventMap.put("ShootHighEvent", new ShootHigh(s_Shooter, s_lilElevatorConveyerBeltThingy));
+        eventMap.put("Balance", new Balance(s_Swerve));
+    }
 
     // The RightPlacePickupPlaceBalance is : 1 foot from DriverStation blue line (x: 2.16), 6 inches
     // from Right wall (y: 0.76).
@@ -209,21 +213,9 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // SendableChooser<InstantCommand> isConeChooser = new SendableChooser<InstantCommand>();
-        // isConeChooser.setDefaultOption("Cube", new InstantCommand(() -> Limelight.setPipeline(0)));
-        // isConeChooser.addOption("Cone", new InstantCommand(() -> Limelight.setPipeline(1)));
-        // SmartDashboard.putData("PipelineChooser", isConeChooser);
-        // final String isConeDashboardSelection =
-        //         NetworkTableInstance.getDefault()
-        //                 .getTable("SmartDashboard")
-        //                 .getSubTable("PipelineChooser")
-        //                 .getEntry("active")
-        //                 .getString("Cube");
-        // Limelight.setPipeline(isConeDashboardSelection == "Cube" ? 0 : 1);
-        // setIsCone(isConeDashboardSelection != "Cube");
         return autonManager.getSelected();
         // return autoBuilder.fullAuto(
-        //         PathPlanner.loadPathGroup("GyroTest", new PathConstraints(1, 0.5))); // ! Test
+        //         PathPlanner.loadPathGroup("GyroTest", new PathConstraints(1, 0.5))); // ! Testing only
     }
 
     public void idleLimelight() {

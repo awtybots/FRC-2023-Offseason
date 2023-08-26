@@ -17,7 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "PlaceCubeHigh"
+          "ShootHighEvent"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",

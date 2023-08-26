@@ -69,6 +69,7 @@ public final class Constants {
             public static final double topWheelSpeed = 3500 * 0.75 * 1.15;
             public static final double bottomWheelSpeed = 4200 * 0.85 * 1.15;
         }
+
         public static final class Far {
             public static final double topWheelSpeed = 100000;
             public static final double bottomWheelSpeed = 5600;

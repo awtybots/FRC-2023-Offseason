@@ -17,11 +17,11 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "PlaceCubeHigh"
+          "ShootHighEvent"
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
-        "waitTime": 0.0
+        "waitTime": 10.0
       }
     },
     {
