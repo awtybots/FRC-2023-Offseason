@@ -65,6 +65,8 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
                                 + Math.abs(Constants.ElevatorConveyerThing.g - getGreen())
                                 + Math.abs(Constants.ElevatorConveyerThing.b - getBlue()));
         return (closeness < Constants.ElevatorConveyerThing.WiggleRoom);
+        
+        
     }
 
     public int getRed() {
@@ -87,7 +89,7 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
 
     public void shoot() {
         shootingTime =
-                250; // five seconds of moving at 20ms frames, TODO USE TIMERS SO THE ROBOT WORKS MORE
+                150; // 3 seconds of moving at 20ms frames, TODO USE TIMERS SO THE ROBOT WORKS MORE
         // CONSISTENTLY
     }
 
@@ -108,18 +110,15 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
 
         detectedColor = m_colorSensor.getColor();
 
-        if (!IsCubeDetected() || shootingTime > 0) {
-            if (!IsCubeDetected()){
-                BeltMotorPidController.setReference(
-                    Constants.ElevatorConveyerThing.bingChillinVelocity, CANSparkMax.ControlType.kVelocity);
-            }
+
             if (shootingTime > 0){
                 BeltMotorPidController.setReference(
                     Constants.ElevatorConveyerThing.bingFastinVelocity, CANSparkMax.ControlType.kVelocity);
             }
-            
-
-        } else {
+            else if (!IsCubeDetected()){
+                BeltMotorPidController.setReference(
+                    Constants.ElevatorConveyerThing.bingChillinVelocity, CANSparkMax.ControlType.kVelocity);
+            } else {
             BeltMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
         }
 
