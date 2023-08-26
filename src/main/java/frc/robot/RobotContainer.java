@@ -2,12 +2,6 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-// TODO FOR OFFSEASON ROBOT
-// FIX ALL BUGS MOSTLY CAUSED BY IMPORTATIONS
-// SET CORRECT CAN ID IN CONFIG FOR SHOOTER AND BELT AND INTAKE
-// TUNE TOP AND BOTTOM MOTOR POSITION
-// TUNE TOP AND BOTTOM MOTOR PIDS
-
 package frc.robot;
 
 import com.pathplanner.lib.PathConstraints;

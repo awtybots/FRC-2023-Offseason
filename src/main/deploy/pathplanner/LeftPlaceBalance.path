@@ -17,11 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
           "ShootHighEvent"
-========
-          "PlaceCubeHigh"
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -55,22 +51,18 @@
     },
     {
       "anchorPoint": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
-        "x": 6.619974229531792,
-        "y": 4.596109818985175
-========
-        "x": 4.926754554250635,
-        "y": 4.6
+        "x": 5.098976378779581,
+        "y": 4.689908808691315
       },
       "prevControl": {
-        "x": 4.8566676344157775,
-        "y": 4.5998174819795965
+        "x": 5.028889458944724,
+        "y": 4.689726290670912
       },
       "nextControl": {
-        "x": 6.231785357048275,
-        "y": 4.6033985177156165
+        "x": 6.404007181577222,
+        "y": 4.693307326406932
       },
-      "holonomicAngle": 0,
+      "holonomicAngle": 180.0,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
@@ -88,7 +80,6 @@
       "anchorPoint": {
         "x": 6.5088663846113,
         "y": 4.586025698357894
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
       },
       "prevControl": {
         "x": 6.5084117071116045,
@@ -98,11 +89,7 @@
         "x": 6.566040154502625,
         "y": 2.692355607168841
       },
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
       "holonomicAngle": 180.0,
-========
-      "holonomicAngle": 0,
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
@@ -116,7 +103,6 @@
     },
     {
       "anchorPoint": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
         "x": 6.013373167398462,
         "y": 2.9539720817722883
       },
@@ -127,18 +113,6 @@
       "nextControl": {
         "x": 5.793336028919237,
         "y": 2.979658031283293
-========
-        "x": 6.0,
-        "y": 2.86
-      },
-      "prevControl": {
-        "x": 5.930915422374872,
-        "y": 2.86
-      },
-      "nextControl": {
-        "x": 6.1036930980292,
-        "y": 2.86
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -154,21 +128,12 @@
     },
     {
       "anchorPoint": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
         "x": 3.934077931578172,
         "y": 2.918670097051565
       },
       "prevControl": {
         "x": 3.7425948816334484,
         "y": 2.935876213006766
-========
-        "x": 3.9057031186096274,
-        "y": 2.8578538221695085
-      },
-      "prevControl": {
-        "x": 3.495744623435343,
-        "y": 2.8578538221695085
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
       },
       "nextControl": null,
       "holonomicAngle": 180.0,
@@ -178,11 +143,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-<<<<<<<< HEAD:src/main/deploy/pathplanner/LeftPlaceBalance.path
           "Balance"
-========
-          "BalanceWithShoot"
->>>>>>>> ba3cdfe6b20009990cb1d88e8377efc07220259a:src/main/deploy/pathplanner/TempLeft.path
         ],
         "executionBehavior": "sequential",
         "waitBehavior": "none",
