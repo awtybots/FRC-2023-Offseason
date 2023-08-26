@@ -23,7 +23,10 @@ public class ShootMid extends CommandBase {
     }
 
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+        s_Shooter.setOff();
+
+    }
 
     @Override
     public boolean isFinished() {
