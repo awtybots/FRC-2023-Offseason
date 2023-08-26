@@ -65,8 +65,6 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
                                 + Math.abs(Constants.ElevatorConveyerThing.g - getGreen())
                                 + Math.abs(Constants.ElevatorConveyerThing.b - getBlue()));
         return (closeness < Constants.ElevatorConveyerThing.WiggleRoom);
-        
-        
     }
 
     public int getRed() {
@@ -110,15 +108,13 @@ public class lilElevatorConveyerBeltThingy extends SubsystemBase {
 
         detectedColor = m_colorSensor.getColor();
 
-
-            if (shootingTime > 0){
-                BeltMotorPidController.setReference(
+        if (shootingTime > 0) {
+            BeltMotorPidController.setReference(
                     Constants.ElevatorConveyerThing.bingFastinVelocity, CANSparkMax.ControlType.kVelocity);
-            }
-            else if (!IsCubeDetected()){
-                BeltMotorPidController.setReference(
+        } else if (!IsCubeDetected()) {
+            BeltMotorPidController.setReference(
                     Constants.ElevatorConveyerThing.bingChillinVelocity, CANSparkMax.ControlType.kVelocity);
-            } else {
+        } else {
             BeltMotorPidController.setReference(0, CANSparkMax.ControlType.kVelocity);
         }
 

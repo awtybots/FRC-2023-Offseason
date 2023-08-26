@@ -14,10 +14,10 @@ import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.commands.Autonomous.Balance.Balance;
 import frc.robot.commands.DontShoot;
 import frc.robot.commands.DriveParts.*;
 import frc.robot.commands.ShootFar;
@@ -29,7 +29,6 @@ import frc.robot.subsystems.MechanicalParts.ShooterSubsystem;
 // import frc.robot.subsystems.ledutils;
 // import frc.robot.subsystems.ledutils.patterens_eneum;
 import frc.robot.subsystems.Swerve.Swerve;
-import frc.robot.commands.Autonomous.Balance.Balance;
 import frc.util.AutonManager;
 import frc.util.Controller;
 import java.util.HashMap;
@@ -74,7 +73,16 @@ public class RobotContainer {
 
     private final HashMap<String, Command> eventMap = new HashMap<>();
 
-    private final String[] autonChoices = new String[] {"RightPlaceTaxi", "RightPlaceBalance", "MiddlePlace", "MiddlePlaceBalance", "LeftPlaceBalance", "LeftPlaceTaxi", "DoNothing"};
+    private final String[] autonChoices =
+            new String[] {
+                "RightPlaceTaxi",
+                "RightPlaceBalance",
+                "MiddlePlace",
+                "MiddlePlaceBalance",
+                "LeftPlaceBalance",
+                "LeftPlaceTaxi",
+                "DoNothing"
+            };
 
     public final SwerveAutoBuilder autoBuilder =
             new SwerveAutoBuilder(
@@ -215,7 +223,8 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         return autonManager.getSelected();
         // return autoBuilder.fullAuto(
-        //         PathPlanner.loadPathGroup("GyroTest", new PathConstraints(1, 0.5))); // ! Testing only
+        //         PathPlanner.loadPathGroup("GyroTest", new PathConstraints(1, 0.5))); // ! Testing
+        // only
     }
 
     public void idleLimelight() {
