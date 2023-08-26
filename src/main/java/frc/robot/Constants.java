@@ -93,12 +93,12 @@ public final class Constants {
         public static final double kFF = 0.00022;
 
         public static final double bingChillinVelocity = 450; // the constant motor velocity
-        public static final double bingFastinVelocity = 2000; // the constant motor velocity
+        public static final double bingFastinVelocity = 2000; // the elevator velocity while shooting
 
 
-        public static final double r = 59;
-        public static final double g = 91;
-        public static final double b = 108;
+        public static final double r = 54;
+        public static final double g = 80;
+        public static final double b = 120;
 
         public static final double WiggleRoom = 25;
     }
